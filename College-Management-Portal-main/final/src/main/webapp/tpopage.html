@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>GECH - T&PO</title>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        header {
+            background-color: cadetblue;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 6% auto ;
+            padding: 20px;
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .admin-option {
+            background-color: #fff;
+            padding: 40px ;
+            margin: 30px auto ;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .admin-option h2 {
+            font-size: 24px;
+        }
+        
+        .drop-down {
+            font-size: 24px;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: cadetblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .branch-semester-dropdowns {
+            display: none;
+        }
+         .home {
+			text-align: center;
+		}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome Training and Placement Officer!!</h1>
+    </header>
+    <div class="container">
+        <div class="admin-options">
+
+            <div class="admin-option">
+                <h2>View Students</h2>
+                
+                <select class="drop-down" name="stuyr" id="yearView">
+                    <option value="" disabled selected>Select Batch</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+                <br>
+                <br>
+                <div class="branch-semester-dropdowns">
+                    <select class="drop-down" name="stubranch" id="branchView" disabled>
+                        <option value="" disabled selected>Select Branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="CV">Civil</option>
+                        <option value="ME">Mechanical</option>
+                    </select>
+                </div>
+                 <br>
+                <div class="btn-container">
+                    <button class="btn" onclick="navigateToPage('students')">Submit</button>
+                </div>
+            </div>
+
+            <div class="admin-option">
+                <h2>View Student Result</h2>
+                <select class="drop-down" name="resyr" id="yearResult">
+                    <option value="" disabled selected>Select Batch</option>
+                    <option value="2020r">2020</option>
+                    <option value="2021r">2021</option>
+                    <option value="2022r">2022</option>
+                    <option value="2023r">2023</option>
+                </select>
+                <br>
+                <br>
+                <div class="branch-semester-dropdowns">
+                    <select class="drop-down" name="resbranch" id="branchResult" disabled>
+                        <option value="" disabled selected>Select Branch</option>
+                        <option value="CSEr">CSE</option>
+                        <option value="ECEr">ECE</option>
+                        <option value="CVr">Civil </option>
+                        <option value="MEr">Mechanical </option>
+                        
+                    </select>
+                    <br><br>
+                    <select class="drop-down" name="semesterResult" id="semesterResult" disabled>
+                        <option value="" disabled selected>Select Semester</option>
+                        <option value="1c">Sem 1-Chemistry </option>
+                        <option value="1p">Sem 1-Physics </option>
+                        <option value="2c">Sem 2-Chemistry </option>
+                        <option value="2p">Sem 2-Physics </option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+                    <br>
+                <div class="btn-container">
+                    <button class="btn" onclick="navigateToPage('results')">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yearView').addEventListener('change', function () {
+            var branchSemesterDropdowns = document.getElementById('branchView').parentNode;
+            
+            // Show branch dropdown if a year is selected
+            branchSemesterDropdowns.style.display = this.value ? 'block' : 'none';
+            
+            // Enable branch dropdown and clear its selection
+            document.getElementById('branchView').disabled = false;
+            document.getElementById('branchView').selectedIndex = 0;
+            document.getElementById('semesterResult').disabled = true;
+            document.getElementById('semesterResult').selectedIndex = 0;
+        });
+    
+        document.getElementById('yearResult').addEventListener('change', function () {
+            var branchSemesterDropdowns = document.getElementById('branchResult').parentNode;
+            
+            // Show branch and semester dropdowns if a year is selected
+            branchSemesterDropdowns.style.display = this.value ? 'block' : 'none';
+    
+            // Enable branch dropdown and clear its selection
+            document.getElementById('branchResult').disabled = false;
+            document.getElementById('branchResult').selectedIndex = 0;
+            document.getElementById('semesterResult').disabled = true;
+            document.getElementById('semesterResult').selectedIndex = 0;
+        });
+    
+        document.getElementById('branchResult').addEventListener('change', function () {
+            var semesterDropdown = document.getElementById('semesterResult');
+            
+            // Show semester dropdown if a branch is selected
+            semesterDropdown.disabled = !this.value;
+            if (!this.value) {
+                // Clear the selected semester if the branch is changed
+                semesterDropdown.selectedIndex = 0;
+            }
+        });
+    
+        function navigateToPage(page) {
+            const year = document.getElementById(page === 'students' ? 'yearView' : 'yearResult').value;
+            const branch = document.getElementById(page === 'students' ? 'branchView' : 'branchResult').value;
+            const semester = document.getElementById('semesterResult').value;
+    
+            // Perform navigation based on the selected options
+            if (year && branch ) {
+                // Construct the URL based on the selected year, branch, and semester
+                let url = `view${year.substring(2)}${branch.toLowerCase()}${semester}.jsp`;
+                window.location.href = url;
+            } else {
+                alert('Please select batch, branch, and semester before submitting.');
+            }
+        }
+    </script>
+    
+     <a href="loginmain.html" class="home"><h3>Home</h3></a>
+</body>
+</html>

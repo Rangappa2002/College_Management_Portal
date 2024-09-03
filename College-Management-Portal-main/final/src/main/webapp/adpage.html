@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>GECH - ADMIN</title>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: cadetblue;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 6% auto;
+            padding: 20px;
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .admin-option {
+            background-color: #fff;
+            padding: 30px ;
+            margin: 30px auto ;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .admin-option h2 {
+            font-size: 24px;
+        }
+        
+        .drop-down {
+			font-size: 24px;
+		}
+		
+		 .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+		
+		 .btn {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: cadetblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .home {
+			text-align: center;
+		}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome Admin!!</h1>
+    </header>
+    <div class="container">
+        <div class="admin-options">
+			
+            <div class="admin-option">
+                <h2>Manage Students</h2>
+                 <select id="managestu" class="drop-down">
+                    <option value="" disabled selected>Select </option>
+                    <option value="add">Add Student Data</option>
+                    <option value="view">View Student Data</option>
+                    <option value="edit">Update Student Data</option>
+                 </select>
+                 <br>
+                 <br>
+                <div class="btn-container">
+                    <button onclick="showDropdown('managestu')" class="btn">Submit</button>
+                </div>
+             </div>
+            
+           
+            
+             <div class="admin-option">
+                 <h2>Manage Results</h2>
+                 <select id="manageres" class="drop-down">
+                   <option value="" disabled selected>Select</option>
+                   <option value="addres">Add Result</option>
+                   <option value="viewres">View Result</option>
+                 </select>
+                 <br>
+                 <br>
+                 <div class="btn-container">
+                    <button onclick="showDropdown('manageres')" class="btn">Submit</button>
+                </div>
+             </div>
+        
+        </div>
+    </div>
+    
+    <script>
+        function showDropdown(dropdownId) {
+            const selectedOption = document.getElementById(dropdownId).value;
+
+            if (selectedOption !== "") {
+                switch (selectedOption) {
+                    case 'add':
+                        window.location.href = 'addstupage.jsp'; 
+                        break;
+                    case 'view':
+                        window.location.href = 'viewdata.jsp'; 
+                        break;
+                    case 'edit':
+                        window.location.href = 'updatestu.jsp';   
+                        break;
+                    case 'addres':
+                        window.location.href = 'semsel.html';
+                        break;
+                    case 'viewres':
+                        window.location.href = 'viewresult.html'; 
+                        break;
+                    default:
+                        alert('Invalid option');
+                }
+            } else {
+                alert('Please select an option before submitting.');
+            }
+        }
+    </script>
+     <a href="loginmain.html" class="home"><h3>Home</h3></a>
+</body>
+</html>

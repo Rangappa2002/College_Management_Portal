@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('gec-image.jpeg');
+}
+
+header {
+    background-color: cadetblue;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 4% auto ;
+    padding: 20px;
+    background-color: lightcyan;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.admin-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-option {
+    background-color: #fff;
+    padding: 40px ;
+    margin: 30px auto ;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    width: 30%;
+}
+
+.admin-option h2 {
+    font-size: 24px;
+}
+
+.dropdown {
+    font-size: 24px;
+}
+
+ .btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+ .btn {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: cadetblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  input[type="text"],
+  input[type="email"],
+ 
+ select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  

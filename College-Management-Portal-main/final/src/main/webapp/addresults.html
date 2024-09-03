@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GECH - Add Result</title>
+<link rel="stylesheet" href="adddatastyle.css">
+<style>
+    h2 {
+        background-color: lightcyan;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .dropdown {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .dropdown select {
+        width: 60%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #1b1a1a;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 750px;
+    }
+
+    .button-container button {
+        padding: 10px 20px;
+    }
+
+    .drop-down {
+        font-size: 24px;
+    }
+
+    .branch-semester-dropdowns {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Add Result</h1>
+</header>
+
+<div class="container">
+	<label for="USN">USN: </label>
+	<input type="text" name="addusn" id="addusn" required>
+	
+    <label for="semester">Semester:</label>
+    <select class="dropdown" name="sem" id="semView">
+        <option value="" disabled selected>Select Semester</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+    </select>
+
+    <div class="branch-semester-dropdowns">
+        <label for="cycle">Cycle:</label>
+        <select class="dropdown" name="cycle" id="cycleView" disabled>
+            <option value="" disabled selected>Select Cycle</option>
+            <option value="CHE">Chemistry</option>
+            <option value="PHY">Physics</option>
+        </select>
+    </div>
+
+    <label for="branch">Branch:</label>
+    <select class="dropdown" name="branch" id="branch">
+        <option value="" disabled selected>Select Branch</option>
+        <option value="CSE">Computer Science</option>
+        <option value="ECE">Electronics & Communication</option>
+        <option value="CV">Civil</option>
+        <option value="ME">Mechanical</option>
+    </select>
+
+    <label for="scheme">Scheme:</label>
+    <select class="dropdown" name="scheme" id="scheme">
+        <option value="" disabled selected>Select Scheme</option>
+        <option value="2018">2018</option>
+    </select>
+
+    <div class="btn-container">
+        <button class="btn" onclick="navigateToPage('results')">Done</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('semView').addEventListener('change', function () {
+        var cycleDropdown = document.getElementById('cycleView').parentNode;
+
+        // Show branch and semester dropdowns if a year is selected
+        cycleDropdown.style.display = (this.value == '1' || this.value == '2') ? 'block' : 'none';
+
+        // Enable/disable cycle dropdown based on selection
+        document.getElementById('cycleView').disabled = !(this.value == '1' || this.value == '2');
+        if (!(this.value == '1' || this.value == '2')) {
+            document.getElementById('cycleView').selectedIndex = 0;
+        }
+    });
+
+    function navigateToPage(page) {
+        const semester = document.getElementById('semView').value;
+        const cycle = document.getElementById('cycleView').value;
+        const branch = document.getElementById('branch').value;
+
+        // Perform navigation based on the selected options
+        if (semester && branch) {
+            let url;
+            if (semester === '1' || semester === '2') {
+                // Construct the URL for the first two semesters
+                url = `addres${semester}${cycle.toLowerCase()}.jsp`;
+            } else {
+                // Construct the URL for semesters 3 to 8
+                url = `addres${semester}.jsp`;
+            }
+            window.location.href = url;
+        } else {
+            alert('Please select both semester and branch before submitting.');
+        }
+    }
+</script>
+
+</body>
+</html>
